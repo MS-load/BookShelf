@@ -1,0 +1,19 @@
+{
+  "name": "bookshelf",
+  "version": "1.0.0",
+  "description": "learning REST with node and express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MS-load/BookShelf.git"
+  },
+  "author": "Mamta Srinivas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MS-load/BookShelf/issues"
+  },
+  "homepage": "https://github.com/MS-load/BookShelf#readme"
+}
