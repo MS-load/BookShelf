@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/MS-load/BookShelf/issues"
   },
-  "homepage": "https://github.com/MS-load/BookShelf#readme"
+  "homepage": "https://github.com/MS-load/BookShelf#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  }
 }
