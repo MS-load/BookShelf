@@ -29,12 +29,11 @@ app.post('/api/books', (req, res) => {
         res.status(400).send('Name is required with a minimum of 3 characters')
         return
     }
+
     const book = {
         id: books.length + 1,
         name: req.body.name
-
     }
-
     books.push(book)
     res.send(book)
 })
@@ -42,7 +41,7 @@ app.post('/api/books', (req, res) => {
 
 app.get('/api/books/:id', (req, res) => {
     const book = books.find(element => element.id === parseInt(req.params.id))
-    if (!book) res.status(404).send('Book not found')
+    if (!book) return res.status(404).send('Book not found')
     res.send(book)
 })
 
@@ -50,7 +49,7 @@ app.listen(port, () => console.log(`Hello world app listening on port ${port}!`)
 
 app.put('/api/books/:id', (req, res) => {
     const book = books.find(element => element.id === parseInt(req.params.id))
-    if (!book) res.status(404).send('Book not found')
+    if (!book) return res.status(404).send('Book not found')
 
     if (!req.body.name || req.body.name < 3) {
         res.status(400).send('Name is required with a minimum of 3 characters')
@@ -61,14 +60,15 @@ app.put('/api/books/:id', (req, res) => {
     res.send(book)
 })
 
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
 
+app.delete('/api/books/:id', (req, res) => {
+    const book = books.find(element => element.id === parseInt(req.params.id))
+    if (!book) return res.status(404).send('Book not found')
 
-// app.post('/book', (req, res) => {
-//     const book = req.body;
-//     console.log(book);
-//     books.push(book);
-//     res.send('Book is added to the database');
-// });
+    const index = books.indexOf(book)
+    books.splice(index, 1)
+
+    res.send(books)
+})
+
 
