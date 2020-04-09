@@ -1,7 +1,11 @@
+
 GET http://localhost:3000/
 
 ###
 GET http://localhost:3000/api/books/
+
+###
+GET http://localhost:3000/api/books/5
 
 ###
 POST http://localhost:3000/api/books
