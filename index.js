@@ -2,18 +2,32 @@ const express = require('express');
 const app = express();
 // const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
+const fs = require('fs');
+
+let rawdata = fs.readFileSync('books.json');
+let books = JSON.parse(rawdata);
+console.log(books);
 
 app.use(express.json())
 
-let books =
-    [
-        { name: 'something', id: 1, author: 'mamta', cost: 300 },
-        { name: 'something', id: 2, author: 'sps', cost: 300 },
-        { name: 'something', id: 3, author: 'usha', cost: 300 },
-        { name: 'something', id: 4, author: 'dhas', cost: 300 },
-        { name: 'something', id: 5, author: 'govind', cost: 300 },
-        { name: 'something', id: 6, author: 'shruti', cost: 300 },
-    ];
+
+
+
+
+
+
+
+
+
+// let books =
+//     [
+//         { name: 'something', id: 1, author: 'mamta', cost: 300 },
+//         { name: 'something', id: 2, author: 'sps', cost: 300 },
+//         { name: 'something', id: 3, author: 'usha', cost: 300 },
+//         { name: 'something', id: 4, author: 'dhas', cost: 300 },
+//         { name: 'something', id: 5, author: 'govind', cost: 300 },
+//         { name: 'something', id: 6, author: 'shruti', cost: 300 },
+//     ];
 
 app.get('/', (req, res) => {
     res.send('Hello World!!!!!');
