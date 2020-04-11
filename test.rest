@@ -12,15 +12,17 @@ POST http://localhost:3000/api/books
 Content-Type: application/json
 
 {
-    "name": "newName"
+    "name": "The Half-Blood Prince",
+    "author": "J. K. Rowling",
+    "year": 2005
 }
 
 ###
-PUT http://localhost:3000/api/books/1
+PUT http://localhost:3000/api/books/1586543106811
 Content-Type: application/json
 
 {
-    "name": "thisName"
+    "name": "The Chamber of Secrets",
 }
 
 ###
