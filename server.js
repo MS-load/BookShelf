@@ -10,9 +10,7 @@ console.log(books)
 app.use(express.json())
 
 //Homepage
-app.get('/', (req, res) => {
-    res.send('Welcome to the library')
-})
+app.use(express.static('public'))
 
 //Library Catalogue
 app.get('/api/books', (req, res) => {
