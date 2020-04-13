@@ -1,10 +1,15 @@
 const express = require('express')
 const app = express()
+
+const cors = require('cors');
+
+app.use(cors());
 const port = process.env.PORT || 3000
 
 const fs = require('fs')
 const rawdata = fs.readFileSync('books.json')
 const books = JSON.parse(rawdata)
+
 console.log(books)
 
 app.use(express.json())

@@ -34,20 +34,16 @@ class RequestDelete {
     const response = await fetch(url, {
       method: 'DELETE',
     } );
-		return  "Data slime operation successful" ;
-		// We printed it ourselves as there will be a blank object that turns to us because it is deleted too.
+		return  "Operation successful" ;
   }
 }
 
 function deleteBook() {
   const id = event.target.parentNode.getAttribute('data-id')
-  // const req= new RequestDelete();
-  // req.delete(`http://localhost:3000/book/${id}`)
-  // .then(message => console.log(message))
-  // .catch(err => console.log(err));
-  // Reloading the page
-  //location.reload();
-
+  const req= new RequestDelete();
+  req.delete(`http://localhost:3000/api/books/${id}`)
+  .then(message => console.log(message))
+  .catch(err => console.log(err));
 }
 
 // getDevices = async () => {
