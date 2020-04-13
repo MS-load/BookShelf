@@ -1,3 +1,4 @@
+//The general GET request (all books)
 fetch('http://localhost:3000/api/books/')
   .then(response => response.json())
   .then(data => {
@@ -6,6 +7,8 @@ fetch('http://localhost:3000/api/books/')
   })
   .catch(error => console.error(error))
 
+
+//Rendering all books
 function printBooks(data) {
   data.forEach(element => {
     const row = document.querySelector('.row')
@@ -29,38 +32,49 @@ function printBooks(data) {
   });
 }
 
+//DELETE request 
 class RequestDelete {
-  async  delete ( url ) {
+  async  delete(url) {
     const response = await fetch(url, {
       method: 'DELETE',
-    } );
-		return  "Operation successful" ;
+    });
+    return "Delete successful";
   }
 }
 
 function deleteBook() {
   const id = event.target.parentNode.getAttribute('data-id')
-  const req= new RequestDelete();
+  const req = new RequestDelete();
   req.delete(`http://localhost:3000/api/books/${id}`)
-  .then(message => console.log(message))
-  .catch(err => console.log(err));
+    .then(message => console.log(message))
+    .catch(err => console.log(err));
 }
 
-// getDevices = async () => {
-//     const location = window.location.hostname;
-//     const settings = {
-//         method: 'POST',
-//         headers: {
-//             Accept: 'application/json',
-//             'Content-Type': 'application/json',
-//         }
-//     };
-//     try {
-//         const fetchResponse = await fetch(`http://${location}:9000/api/sensors/`, settings);
-//         const data = await fetchResponse.json();
-//         return data;
-//     } catch (e) {
-//         return e;
-//     }    
+//POST request 
+class RequestPost {
+  post(url,data){
+		let postObj = {
+				method: 'POST',
+				body: JSON.stringify(data),
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
+				}
+		}
+		return new Promise((resolve, reject) => {
+			fetch(url, postObj)
+			.then(response => response.json())
+			.then(data => resolve(data))
+			.catch(err => reject(err));
+			})
+	}
+}
 
-// }
+function addBook() {
+  const title = document.querySelector('input[name=title]').value
+  const author = document.querySelector('input[name=author]').value
+  const year = document.querySelector('input[name=year]').value
+  const req = new RequestPost();
+  req.post(`http://localhost:3000/api/books`, { name: title, author: author, year: year })
+    .then(message => console.log(message))
+    .catch(err => console.log(err));
+}

@@ -28,6 +28,14 @@ app.post('/api/books', (req, res) => {
         res.status(400).send('Name is required with a minimum of 3 characters')
         return
     }
+    if (!req.body.author || req.body.author < 3) {
+        res.status(400).send('Author is required with a minimum of 3 characters')
+        return
+    }
+    if (!req.body.year) {
+        res.status(400).send('Year is required')
+        return
+    }
 
     const book = {
         name: req.body.name,

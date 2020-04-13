@@ -24,3 +24,10 @@ body {
     text-align: center;
     background-color: #f1f1f1;
 }
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    width: 12.5rem;
+}
