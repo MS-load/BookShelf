@@ -22,7 +22,7 @@ PUT http://localhost:3000/api/books/1586543106811
 Content-Type: application/json
 
 {
-    "name": "The Chamber of Secrets",
+    "name": "The Chamber of Secrets"
 }
 
 ###
