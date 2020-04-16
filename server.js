@@ -76,9 +76,9 @@ app.delete('/api/books/:id', (req, res) => {
     res.send(books)
 })
 
-//Searching for a book by id
-app.get('/api/books/:id', (req, res) => {
-    const book = books.find(element => element.id === parseInt(req.params.id))
+//Searching for a book by name
+app.get('/api/books/:name', (req, res) => {
+    const book = books.find(element => (element.name).toLowerCase() === (req.params.name).toLowerCase())
     if (!book) return res.status(404).send('Book not found')
     res.send(book)
 })

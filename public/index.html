@@ -5,11 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Eczar:600|Merriweather" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="style.css">
     <script src="./index.js"></script>
 </head>
 
 <body>
+
+    <form class='search' onsubmit="searchBook()" >
+        <input type="text" placeholder="Search by title" name="search">
+        <button type="submit"> <i class="material-icons"> search </i></button>
+    </form>
+
     <div class="row">
         <div class="column card">
             <div class="container">
@@ -20,32 +28,42 @@
                 <label for="year">Year</label>
                 <input type="number" name="addYear">
             </div>
-            <button onclick="showInput()">Add Book</button>
+            <button onclick="showInput()">
+                <h4>Add a book</h4><span class="material-icons">
+                    library_add
+                </span>
+            </button>
         </div>
     </div>
     <div class="modal-overlay">
         <div class="modal-content">
             <form onsubmit="editBook()">
                 <div>
-                    <label for="title">Title</label>
+                    <label for="title">
+                        <p>Title</p>
+                    </label>
                     <input type="text" name="title">
                 </div>
                 <div>
-                    <label for="author">Author</label>
+                    <label for="author">
+                        <p>Author</p>
+                    </label>
                     <input type="text" name="author">
                 </div>
                 <div>
-                    <label for="year">Year</label>
+                    <label for="year">
+                        <p>Year</p>
+                    </label>
                     <input type="number" name="year">
                 </div>
-                <button onclick="closeModal()">Cancel</button>
                 <menu>
-
+                    <input type="button" onclick="closeModal()" value='Cancel'>
                     <input type="submit" value="Submit">
                 </menu>
             </form>
         </div>
     </div>
+
 </body>
 
 </html>

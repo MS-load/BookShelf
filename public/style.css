@@ -2,21 +2,32 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
+h1, h2, h3, h3, h5, h6 {
+    font-family: 'Eczar', serif;
+}
 
+p {
+    font-family: 'Merriweather', Serif;
+}
+
+html {
+    background: url(./bk1.jfif) no-repeat center center fixed;
+    background-size: cover;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    color: white;
 }
 
 .row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: flex-start;
+    align-content: center;
+    justify-content: center;
 }
 
 .column {
@@ -28,24 +39,34 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 1rem;
     text-align: center;
-    background-color: #f1f1f1;
+
+    background: url(./bookCover.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 18.75rem;
 }
 
-input{
+input[type=text], input[type=number] {
     border-radius: 1.5rem;
     border: 1px solid black;
+    padding: 0 0.5rem;
+    width: 10rem;
+    height: 1.2rem;
+    transition: width 0.4s ease-in-out;
 }
 
-label{
+input[type=text]:focus, input[type=number]:focus {
+    width: 100%;
+}
+
+label {
     font-weight: bold;
 }
 
-.container{
-  display: none;
+.container {
+    display: none;
 }
 
-
-.modal-overlay{
+.modal-overlay {
     display: none;
     position: fixed;
     z-index: 1;
@@ -53,16 +74,61 @@ label{
     top: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-  }
-  
-  .modal-content{
-    background-color: #f4f4f4;
-    margin: 20% auto;
-    width: 70%;
-    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
-  }
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
-  
-  
+.modal-content {
+    padding: 1rem;
+    background-color: maroon;
+    margin: 10% auto;
+    width: 70%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.search input {
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: maroon;
+    border-radius: 0%;
+    background: transparent;
+    color: maroon;
+    font-weight: 800;
+}
+
+.search>div{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.search button{
+    color: maroon
+}
+button{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color:white
+}
+
+button:active{
+    color:pink
+}

@@ -5,8 +5,7 @@ GET http://localhost:3000/
 GET http://localhost:3000/api/books/
 
 ###
-GET http://localhost:3000/api/books/1586543168911
-
+GET http://localhost:3000/api/books/The Goblet of Fire
 ###
 POST http://localhost:3000/api/books
 Content-Type: application/json

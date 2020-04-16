@@ -1,11 +1,21 @@
 //The general GET request (all books)
-fetch('http://localhost:3000/api/books/')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
-    printBooks(data)
+class RequestGet {
+  async get(url){
+    const response = await fetch(url);
+    const data = response.json();
+    return data;
+  }
+}
+
+function loadBooks(){
+  const req = new RequestGet();
+  req.get('http://localhost:3000/api/books/')
+    .then(data => {
+      printBooks(data)
   })
-  .catch(error => console.error(error))
+    .catch(err => console.log(err));
+}
+
 
 //Rendering all books
 function printBooks(data) {
@@ -19,15 +29,18 @@ function printBooks(data) {
     const title = document.createElement('h4')
     const author = document.createElement('p')
     const year = document.createElement('p')
-    const del = document.createElement('button')
-    const edit = document.createElement('button')
-    del.innerHTML = `Delete`
+    const del = document.createElement('span')
+    const edit = document.createElement('span')
+    edit.classList.add('material-icons')
+    del.classList.add('material-icons')
+    del.innerHTML = `delete`
     del.onclick = deleteBook
-    edit.innerHTML = `Edit`
+    edit.innerHTML = `create`
     edit.onclick = showModal
     title.innerHTML = element.name
     author.innerHTML = `author: ${element.author}`
     year.innerHTML = `year: ${element.year}`
+
     card.appendChild(title)
     card.appendChild(author)
     card.appendChild(year)
@@ -114,7 +127,7 @@ class RequestPut {
 
 function editBook() {
   event.preventDefault()
-  const form = document.querySelector('form')
+  const form = document.querySelectorAll('form')[1]
   let formData = new FormData(form);
   data = {
     "name": formData.get('title'),
@@ -132,7 +145,7 @@ function editBook() {
 
 function showModal() {
   const modal = document.querySelector('.modal-overlay').style
-  const form = document.querySelector('form')
+  const form = document.querySelectorAll('form')[1]
   id = event.target.parentNode.getAttribute('data-id')
   form.setAttribute("data-id", id)
 
@@ -155,3 +168,18 @@ function closeModal() {
   modal.display = 'none'
 }
 
+
+
+function searchBook(){
+  event.preventDefault()
+  title = document.querySelector('input[name=search]').value
+  const req = new RequestGet();
+  req.get(`http://localhost:3000/api/books/${title}`)
+    .then(data => {
+      console.log(data);
+  })
+    .catch(err => console.log(err));
+    document.querySelector('input[name=search]').value = ''
+}
+
+window.addEventListener('load', loadBooks())
