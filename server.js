@@ -34,7 +34,6 @@ app.post('/api/books', (req, res) => {
         res.status(400).send('Year is required')
         return
     }
-
     const book = {
         name: req.body.name,
         id: Date.now(),
@@ -56,7 +55,6 @@ app.put('/api/books/:id', (req, res) => {
         res.status(400).send('Name is required with a minimum of 3 characters')
         return
     }
-
     if(req.body.name){book.name = req.body.name}
     if(req.body.author){book.author= req.body.author}
     if(req.body.year){book.year = req.body.year}

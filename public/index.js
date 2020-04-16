@@ -48,7 +48,6 @@ class RequestDelete {
   }
 }
 
-
 function deleteBook() {
   const id = event.target.parentNode.getAttribute('data-id')
   const req = new RequestDelete();
@@ -57,42 +56,6 @@ function deleteBook() {
     .catch(err => console.log(err));
 }
 
-
-class RequestPut {
-  put(url, data) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'PUT',
-        body: JSON.stringify(data),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-      })
-        .then(response => response)
-        .catch(err => reject(err));
-    })
-  }
-}
-
-
-function editBook() {
-  event.preventDefault();
-  const form = document.querySelector('form')
-  let formData = new FormData(form);
-  data = {
-     "name": formData.get('title'),
-     "author": formData.get('author'),
-     "year": formData.get('year')
-  }
-
-  id = form.getAttribute('data-id')
-
-  console.log(data)
-const req = new RequestPut();
-req.put(`http://localhost:3000/api/books/${id}`, data)
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
-}
 
 //POST request 
 class RequestPost {
@@ -131,22 +94,55 @@ function showInput() {
     addBook()
   }
 }
-const modal = document.querySelector('.modal-overlay').style
-function showModal() {
 
+//UPDATE request 
+class RequestPut {
+  put(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+        .then(response => response)
+        .catch(err => reject(err));
+    })
+  }
+}
+
+function editBook() {
+  event.preventDefault()
+  const form = document.querySelector('form')
+  let formData = new FormData(form);
+  data = {
+    "name": formData.get('title'),
+    "author": formData.get('author'),
+    "year": formData.get('year')
+  }
+
+  id = form.getAttribute('data-id')
+  console.log(data)
+  const req = new RequestPut();
+  req.put(`http://localhost:3000/api/books/${id}`, data)
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+}
+
+function showModal() {
+  const modal = document.querySelector('.modal-overlay').style
   const form = document.querySelector('form')
   id = event.target.parentNode.getAttribute('data-id')
-  form.setAttribute("data-id", id )
+  form.setAttribute("data-id", id)
 
   const childNodes = event.target.parentElement.childNodes
   const title = document.querySelector('input[name=title]')
   const author = document.querySelector('input[name=author]')
   const year = document.querySelector('input[name=year]')
-  
-
 
   title.value = childNodes[0].innerText
-  author.value= (childNodes[1].innerText).split(':')[1]
+  author.value = (childNodes[1].innerText).split(':')[1]
   year.value = parseInt((childNodes[2].innerText).split(':')[1])
   console.log(childNodes)
   console.log(year.value)
@@ -155,6 +151,7 @@ function showModal() {
 
 function closeModal() {
   event.preventDefault();
+  const modal = document.querySelector('.modal-overlay').style
   modal.display = 'none'
 }
 
