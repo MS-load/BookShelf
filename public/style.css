@@ -30,16 +30,12 @@ body {
     justify-content: center;
 }
 
-.column {
-    margin: 1rem;
-    width: 12.5rem;
-}
-
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 1rem;
     text-align: center;
-
+    margin: 1.5rem;
+    width: 12.5rem;
     background: url(./bookCover.jpg) no-repeat center center fixed;
     background-size: cover;
     height: 18.75rem;
