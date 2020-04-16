@@ -10,8 +10,6 @@ const fs = require('fs')
 const rawdata = fs.readFileSync('books.json')
 const books = JSON.parse(rawdata)
 
-console.log(books)
-
 app.use(express.json())
 
 //Homepage
@@ -59,7 +57,10 @@ app.put('/api/books/:id', (req, res) => {
         return
     }
 
-    book.name = req.body.name
+    if(req.body.name){book.name = req.body.name}
+    if(req.body.author){book.author= req.body.author}
+    if(req.body.year){book.year = req.body.year}
+    
     let data = JSON.stringify(books, null, 2);
     updateFile(data)
     res.send(book)
