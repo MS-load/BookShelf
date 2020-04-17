@@ -29,26 +29,13 @@ function printSingleBook(element) {
   const card = document.createElement('div')
   card.classList.add("card")
   card.setAttribute("data-id", element.id)
-  const title = document.createElement('h4')
-  const author = document.createElement('p')
-  const year = document.createElement('p')
-  const del = document.createElement('span')
-  const edit = document.createElement('span')
-  edit.classList.add('material-icons')
-  del.classList.add('material-icons')
-  del.innerHTML = `delete`
-  del.onclick = deleteBook
-  edit.innerHTML = `create`
-  edit.onclick = showModal
-  title.innerHTML = element.name
-  author.innerHTML = `author: ${element.author}`
-  year.innerHTML = `year: ${element.year}`
-
-  card.appendChild(title)
-  card.appendChild(author)
-  card.appendChild(year)
-  card.appendChild(edit)
-  card.appendChild(del)
+  card.innerHTML = `
+                <h4>${element.name}</h4>
+                <p>author: ${element.author}</p>
+                <p>year: ${element.year}</p>
+                <span class="material-icons" onclick = "showModal()">create</span>
+                <span class="material-icons" onclick = "deleteBook()">delete</span>
+                `
   return card
 }
 
@@ -64,6 +51,7 @@ class RequestDelete {
 
 function deleteBook() {
   const id = event.target.parentNode.getAttribute('data-id')
+  console.log(id)
   const req = new RequestDelete();
   req.delete(`http://localhost:3000/api/books/${id}`)
     .then(message => console.log(message))
@@ -154,9 +142,9 @@ function showModal() {
   const author = document.querySelector('input[name=author]')
   const year = document.querySelector('input[name=year]')
 
-  title.value = childNodes[0].innerText
-  author.value = (childNodes[1].innerText).split(':')[1]
-  year.value = parseInt((childNodes[2].innerText).split(':')[1])
+  title.value = childNodes[1].innerText
+  author.value = (childNodes[3].innerText).split(':')[1]
+  year.value = parseInt((childNodes[5].innerText).split(':')[1])
   console.log(childNodes)
   console.log(year.value)
   modal.display = 'block'
@@ -177,16 +165,14 @@ function searchBook() {
     .then(data => {
       const allBooks = document.querySelectorAll(`[data-id]`)
       const reqBook = document.querySelector(`[data-id="${data.id}"]`)
-
+      const home = document.querySelector('.home')
+      const search = document.querySelector('.search')
+      search.style.display = "none"
+      home.style.display = 'block'
       allBooks.forEach(element => {
         if (reqBook) {
           if (element !== reqBook) {
             element.style.display = 'none'
-            // const back = document.createElement('button')
-           
-            // back.innerHTML = `back`
-            // back.onclick = loadBooks
-            // document.body.appendChild(back)
           }
         }
         else {
@@ -196,8 +182,15 @@ function searchBook() {
     })
     .catch(err => console.log(err));
   document.querySelector('input[name=search]').value = ''
-
-
 }
 
+function showAll() {
+  resetStyle = document.querySelectorAll('[data-id],.search')
+  const home = document.querySelector('.home')
+  home.style.display = 'none'
+  console.log(resetStyle)
+  resetStyle.forEach(element => {
+    element.style.display = 'unset'
+  });
+}
 window.addEventListener('load', loadBooks())

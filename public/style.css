@@ -128,3 +128,10 @@ button{
 button:active{
     color:pink
 }
+
+.home{
+    color:maroon;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
