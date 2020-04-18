@@ -5,9 +5,6 @@
 4. The API has been showcased using shelf of Harry Potter books with a basic client interface.
 5. User  can retrieve a specific book based on the title
 
-# Features
-1. All data should be stored in a JSON file instead of in the server file
-
 # Installation
 Created using NodeJS with express 
 1. Install the dependencies `npm i `.
@@ -16,4 +13,4 @@ Created using NodeJS with express
 
 (Visual Studio Code's Rest Client was used to test the API )
 
-# [Repo Link]
+[Repo Link](https://github.com/MS-load/BookShelf)
