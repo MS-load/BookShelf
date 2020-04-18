@@ -1,9 +1,8 @@
 # BookShelf
 1. A simple REST API to create and manage a bookshelf
 2. The backend storage uses a JSON file
-3. All CRUD operations on books possible
-4. The API has been showcased using shelf of Harry Potter books with a basic client interface.
-5. User  can retrieve a specific book based on the title
+3. All CRUD operations on books possible using the API, including search
+4. A simple client in the form of a shelf of Harry Potter books is also available
 
 # Installation
 Created using NodeJS with express 
